@@ -34,7 +34,6 @@ function App() {
     sharpness: 50,
   });
 
-
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -216,7 +215,7 @@ function App() {
         )}
 
         {/* Preview Section */}
-        {preview && processed && (
+        {preview && processed && !processing && (
           <div className="bg-white rounded-lg shadow-lg p-6">
             <div
               ref={containerRef}
@@ -239,6 +238,7 @@ function App() {
                             autoPlay
                             loop
                             playsInline
+                            controls
                             className="w-full h-auto object-contain"
                         >
                         </video>
@@ -251,6 +251,7 @@ function App() {
                             autoPlay
                             loop
                             playsInline
+                            controls
                             className="w-full h-auto object-contain"
                         >
                         </video>
@@ -265,30 +266,18 @@ function App() {
               <h3>Brightness</h3>
               <Slider
                 defaultValue={controls.brightness}
-                min={0}
-                step={10}
-                max={100}
-                graduated
                 progress
                 onChangeCommitted={(value) => handleControlChange('brightness', value.toString())}
               />
               <h3>Sharpness</h3>
               <Slider
                 defaultValue={controls.sharpness}
-                min={0}
-                step={10}
-                max={100}
-                graduated
                 progress
                 onChangeCommitted={(value) => handleControlChange('sharpness', value.toString())}
               />
               <h3>Contrast</h3>
               <Slider
                 defaultValue={controls.contrast}
-                min={0}
-                step={10}
-                max={100}
-                graduated
                 progress
                 onChangeCommitted={(value) => handleControlChange('contrast', value.toString())}
               />
